@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Despensa | Productos de calidad para tu hogar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f7f2;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Estilos del encabezado */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #e74c3c;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 22px;
+            color: #333;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Hero Section - Imagen grande al inicio */
+        .hero {
+            position: relative;
+            height: 85vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: slideUp 1s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: 2px solid #e74c3c;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Sección de redes sociales */
+        .social-section {
+            background-color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .social-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .social-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #e74c3c;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .social-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #e74c3c, #f39c12);
+            border-radius: 2px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-10px);
+        }
+        
+        .social-icon i {
+            font-size: 3.8rem;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover i {
+            transform: scale(1.1);
+            filter: drop-shadow(0 5px 10px rgba(231, 76, 60, 0.3));
+        }
+        
+        .social-icon span {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s;
+        }
+        
+        .social-icon:hover span {
+            color: #e74c3c;
+        }
+        
+        /* Sección de productos */
+        .products-section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            padding: 0 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #e74c3c, #f39c12);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 22px;
+        }
+        
+        .product-category {
+            color: #e74c3c;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .product-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        
+        .product-description {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            min-height: 60px;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 10px;
+        }
+        
+        .product-price span {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .add-to-cart {
+            background: linear-gradient(to right, #e74c3c, #f39c12);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .add-to-cart:hover {
+            background: linear-gradient(to right, #c0392b, #d35400);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: #ddd;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #f8f8f8;
+        }
+        
+        .favorite-btn:hover {
+            color: #e74c3c;
+            background-color: #fff0f0;
+        }
+        
+        /* Sección de ofertas */
+        .offers-section {
+            background: linear-gradient(to right, #e74c3c, #f39c12);
+            padding: 70px 0;
+            margin: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .offers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .offers-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .offers-section p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .subscribe-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+        
+        .subscribe-form button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-form button:hover {
+            background-color: #1a252f;
+        }
+        
+        /* Pie de página */
+        footer {
+            background: linear-gradient(to bottom, #2c3e50, #1a252f);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+        
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #f39c12;
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: #f39c12;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-social a:hover {
+            background-color: #e74c3c;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+        
+        /* Botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 75vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                color: #333;
+                cursor: pointer;
+            }
+            
+            .social-icons {
+                gap: 20px;
+            }
+            
+            .social-icon i {
+                font-size: 3.2rem;
+            }
+            
+            .social-icon span {
+                font-size: 1rem;
+            }
+            
+            .subscribe-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .subscribe-form input,
+            .subscribe-form button {
+                width: 100%;
+                border-radius: 30px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-basket"></i>
+                <span>Mi Despensa</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
+                    <li><a href="#recetas">Recetas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">3</span>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sección Hero con imagen grande -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Sabores que transforman tu cocina</h1>
+            <p>Productos frescos y de la más alta calidad para tu despensa diaria</p>
+            <a href="#productos" class="btn">Explorar Productos</a>
+        </div>
+    </section>
+
+
+
+    <!-- Sección de Productos -->
+    <section class="products-section" id="productos">
+        <div class="section-title">
+            <h2>Nuestros Productos Destacados</h2>
+            <p>Descubre nuestra selección de alimentos frescos y de calidad para tu hogar</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Frutas frescas">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Frutas y Verduras</div>
+                    <h3 class="product-name">Cesta de Frutas Frescas</h3>
+                    <p class="product-description">Selección de frutas de temporada recién cosechadas</p>
+                    <div class="product-price"><span></span> 300 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Lácteos.jpg" alt="Pan artesanal">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">lacteos</div>
+                    <h3 class="product-name">Pan Integral Artesanal</h3>
+                    <p class="product-description">Elaborado con harina integral y fermentación natural</p>
+                    <div class="product-price"><span></span> 200 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Carnes y embutidos.jpg" alt="Aceite de oliva">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">carnes</div>
+                    <h3 class="product-name">Carnes y embutidos</h3>
+                    <p class="product-description">Primera prensada en frío, origen Andalucía</p>
+                    <div class="product-price"><span></span> 150 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Panadería y repostería.jpg" alt="Mermelada casera">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">panaderia</div>
+                    <h3 class="product-name">panaderia y reposteria</h3>
+                    <p class="product-description">Elaborada con fresas frescas y bajo contenido de azúcar</p>
+                    <div class="product-price"><span></span> 300 pls</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Sereal y grano.jpg" alt="Quesos">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">cereales</div>
+                    <h3 class="product-name">cereales y granos</h3>
+                    <p class="product-description">Queso español de oveja, añejado 12 meses</p>
+                    <div class="product-price"><span></span> 150 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 6 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Refrescos .jpg" alt="Pasta">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">bebidas</div>
+                    <h3 class="product-name">BEBIDAS y refrescos</h3>
+                    <p class="product-description">Variedad de pastas frescas elaboradas a mano</p>
+                    <div class="product-price"><span></span> 399 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 7 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Enlatados y reservas.jpg" alt="Ensalada">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Emlatados</div>
+                    <h3 class="product-name">EMLATADOS Y CONSERVAS</h3>
+                    <p class="product-description">Mezcla de hojas verdes, tomate, aceitunas y queso feta</p>
+                    <div class="product-price"><span></span> 299 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 8 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Snacks y dulces.jpg" alt="Café">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">ESNACKS Y DULCES</div>
+                    <h3 class="product-name">SNACKS Y DULCES</h3>
+                    <p class="product-description">Granos de café arábica tostado medio, origen Colombia</p>
+                    <div class="product-price"><span></span> 150 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 9 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Especial y condimento.jpg" alt="Miel">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">condimentos</div>
+                    <h3 class="product-name">Condimentos y Especies</h3>
+                    <p class="product-description">Miel orgánica multifloral, recolectada en los Alpes</p>
+                    <div class="product-price"><span></span> 500 lps</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Añadir al carrito</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Ofertas -->
+    <section class="offers-section" id="ofertas">
+        <div class="offers-container">
+            <h2>¡Ofertas Exclusivas!</h2>
+            <p>Suscríbete a nuestro newsletter y recibe descuentos especiales en tu primera compra</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirme</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sección de Redes Sociales (Abajo) -->
+    <section class="social-section">
+        <div class="social-container">
+            <h2>Conéctate con nosotros</h2>
+            <div class="social-icons">
+               <!-- Facebook -->
+<a href="https://www.facebook.com/Juan Orlando" class="social-icon" target="_blank">
+    <i class="fab fa-facebook"></i>
+    <span>Facebook</span>
+</a>
+
+<!-- Instagram -->
+<a href="https://www.instagram.com/@_mi.despensa" class="social-icon" target="_blank">
+    <i class="fab fa-instagram"></i>
+    <span>Instagram</span>
+</a>
+
+<!-- Twitter -->
+<a href="https://twitter.com/" class="social-icon" target="_blank">
+    <i class="fab fa-twitter"></i>
+    <span>Twitter</span>
+</a>
+
+<!-- Pinterest -->
+<a href="https://www.pinterest.com/" class="social-icon" target="_blank">
+    <i class="fab fa-pinterest"></i>
+    <span>Pinterest</span>
+</a>
+
+<!-- YouTube -->
+<a href="https://www.youtube.com/@JoseHernandez-bz4lw" class="social-icon" target="_blank">
+    <i class="fab fa-youtube"></i>
+    <span>YouTube</span>
+</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Mi Despensa</h3>
+                <p>Tu tienda de confianza para productos de calidad. Ofrecemos alimentos frescos y naturales para tu hogar.</p>
+                <div class="footer-social">
+                    <a href="Corbi Castillo"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                    <li><a href="#productos"><i class="fas fa-chevron-right"></i> Productos</a></li>
+                    <li><a href="#ofertas"><i class="fas fa-chevron-right"></i> Ofertas Especiales</a></li>
+                    <li><a href="#recetas"><i class="fas fa-chevron-right"></i> Recetas</a></li>
+                    <li><a href="#nosotros"><i class="fas fa-chevron-right"></i> Sobre Nosotros</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Categorías</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Frutas y Verduras</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Carnes y Pescados</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Lácteos y Huevos</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Panadería</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Bebidas</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Ciudad</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> info@midespensa.com</p>
+                <p><i class="fas fa-clock"></i> Lunes a Sábado: 8:00 - 20:00</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Mi Despensa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/ +504 9602-7960" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <script>
+       
+    </script>
+</body>
+</html>
